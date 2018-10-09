@@ -2,6 +2,8 @@ import { observable, computed } from 'mobx'
 import TodoView, { Todo } from './Todo'
 import { observer } from 'mobx-react'
 import React from 'react'
+import scssStyles from './style.module.scss'
+import { Button } from 'mdbreact'
 
 export class TodoList {
     @observable todos = [
@@ -15,18 +17,21 @@ export class TodoList {
 }
 
 @observer
-export default class TodoListView extends React.Component {
+class TodoListView extends React.Component {
 
     render() {
       return (
-        <div>
+        <div className={scssStyles.todoList}>
           <ul>
               {this.props.todoList.todos.map(todo => (
                   <TodoView todo={todo} key={todo.id} />
               ))}
           </ul>
           Tasks left: {this.props.todoList.unfinishedTodoCount}
+          <Button>Test</Button>
         </div>
       )
     }
 }
+
+export default TodoListView
